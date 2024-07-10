@@ -1,1 +1,9 @@
-{}
+{
+    "SecurityInfo": {
+        "PluginDescription": "Eolas slándála agus feabhsuithe molta do do thimpeallacht PHP. Ní thagann sé in ionad cleachtais shlána forbartha, ná ní dhéantar iniúchadh ar an gcód/iarratas. Bunaithe ar PhpSecInfo ó Chuibhreannas Slándála PHP.",
+        "Result": "Toradh",
+        "Security": "Slándáil",
+        "SecurityInformation": "Eolas Slándála PHP",
+        "Test": "Scrúdú"
+    }
+}
