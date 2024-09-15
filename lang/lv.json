@@ -1,7 +1,9 @@
 {
     "SecurityInfo": {
+        "PluginDescription": "Drošības informācija un ieteikumi jūsu PHP videi. Tas neaizstāj drošas izstrādes praksi, nedz arī koda/lietojumprogrammas auditēšanu. Balstīts uz \"PhpSecInfo\" no PHP Security Consortium.",
+        "Result": "Rezultāts",
+        "Security": "Drošība",
         "SecurityInformation": "PHP drošības informācija",
-        "Test": "Testēt",
-        "Result": "Rezultāts"
+        "Test": "Testēt"
     }
 }
