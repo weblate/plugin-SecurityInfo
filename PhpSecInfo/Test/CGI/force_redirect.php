@@ -101,7 +101,7 @@ class PhpSecInfo_Test_Cgi_Force_Redirect extends PhpSecInfo_Test_Cgi
                 "force_redirect is disabled because php was not compiled with --enable-force-cgi-redirect.  In most cases, this is a security vulnerability, but it appears this is not needed because you are running " . $this->skipTest()
             );
             $message = "force_redirect is disabled because php was not compiled with --enable-force-cgi-redirect.  In most cases, this is a <strong>serious</strong> security vulnerability."
-                . "  Unless you are absolutely sure this is not needed, recompile php with --enable-force-cgi-redirect and enable cgi.force_redirect"
+                . "  Unless you are absolutely sure this is not needed, recompile php with --enable-force-cgi-redirect and enable cgi.force_redirect";
             $this->setMessageForResult(
                 PHPSECINFO_TEST_RESULT_WARN,
                 'en',

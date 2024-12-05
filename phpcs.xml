@@ -22,25 +22,13 @@
     <rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
         <!-- Classnames for our update files don't match PascalCase, this can't be changed easily -->
         <exclude-pattern>Updates/*</exclude-pattern>
-        <exclude-pattern>PhpSecInfo/*</exclude-pattern>
-        <exclude-pattern>tests/*</exclude-pattern>
-    </rule>
-
-    <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
-        <!-- Allow using method name with underscore prefix -->
-        <exclude-pattern>PhpSecInfo/*</exclude-pattern>
-        <exclude-pattern>tests/*</exclude-pattern>
-    </rule>
-
-    <rule ref="PSR2.Classes.PropertyDeclaration.Underscore">
-        <!-- Allow using method name with underscore prefix -->
+        <!-- Allow classnames to be difference cases because we don't want to have to refactor and risk regressions -->
         <exclude-pattern>PhpSecInfo/*</exclude-pattern>
     </rule>
 
     <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
-        <!-- Allow using method name without camel caps in tests as long as some methods are named test_* -->
+        <!-- Allow using method name without camel caps because we don't want to have to refactor and risk regressions -->
         <exclude-pattern>PhpSecInfo/Test/Test.php</exclude-pattern>
-        <exclude-pattern>tests/*</exclude-pattern>
     </rule>
 
     <rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">
@@ -49,8 +37,18 @@
     </rule>
 
     <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
-        <!-- Allow no namespace -->
+        <!-- Allow no namespace because we don't want to have to refactor and risk regressions -->
         <exclude-pattern>PhpSecInfo/PhpSecInfo.php</exclude-pattern>
         <exclude-pattern>PhpSecInfo/Test/*</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
+        <!-- Allow using method name with underscore prefix because we don't want to have to refactor and risk regressions -->
+        <exclude-pattern>PhpSecInfo/*</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR2.Classes.PropertyDeclaration.Underscore">
+        <!-- Allow using property name with underscore prefix because we don't want to have to refactor and risk regressions -->
+        <exclude-pattern>PhpSecInfo/*</exclude-pattern>
     </rule>
 </ruleset>
