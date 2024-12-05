@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Skeleton Test class file
  *
@@ -12,19 +13,19 @@
 require_once(PHPSECINFO_BASE_DIR . '/PhpSecInfo.php');
 
 
-define ('PHPSECINFO_TEST_RESULT_OK', -1);
+define('PHPSECINFO_TEST_RESULT_OK', -1);
 
-define ('PHPSECINFO_TEST_RESULT_NOTICE', -2);
+define('PHPSECINFO_TEST_RESULT_NOTICE', -2);
 
-define ('PHPSECINFO_TEST_RESULT_WARN', -4);
+define('PHPSECINFO_TEST_RESULT_WARN', -4);
 
-define ('PHPSECINFO_TEST_RESULT_ERROR', -1024);
+define('PHPSECINFO_TEST_RESULT_ERROR', -1024);
 
-define ('PHPSECINFO_TEST_RESULT_NOTRUN', -2048);
+define('PHPSECINFO_TEST_RESULT_NOTRUN', -2048);
 
-define ('PHPSECINFO_TEST_COMMON_TMPDIR', '/tmp');
+define('PHPSECINFO_TEST_COMMON_TMPDIR', '/tmp');
 
-define ('PHPSECINFO_TEST_MOREINFO_BASEURL', 'http://phpsec.org/projects/phpsecinfo/tests/');
+define('PHPSECINFO_TEST_MOREINFO_BASEURL', 'http://phpsec.org/projects/phpsecinfo/tests/');
 
 /**
  * This is a skeleton class for PhpSecInfo tests  You should extend this to make a "group" skeleton
@@ -34,7 +35,6 @@ define ('PHPSECINFO_TEST_MOREINFO_BASEURL', 'http://phpsec.org/projects/phpsecin
  */
 class PhpSecInfo_Test
 {
-
     /**
      * This value is used to group test results together.
      *
@@ -42,7 +42,7 @@ class PhpSecInfo_Test
      *
      * @var string
      */
-    var $test_group = 'misc';
+    $test_group = 'misc';
 
 
     /**
@@ -50,7 +50,7 @@ class PhpSecInfo_Test
      *
      * @var string
      */
-    var $test_name = 'misc_test';
+    $test_name = 'misc_test';
 
 
     /**
@@ -58,7 +58,7 @@ class PhpSecInfo_Test
      *
      * @var mixed
      */
-    var $recommended_value = "bar";
+    $recommended_value = "bar";
 
 
     /**
@@ -66,7 +66,7 @@ class PhpSecInfo_Test
      *
      * @var integer
      */
-    var $_result = PHPSECINFO_TEST_RESULT_NOTRUN;
+    $_result = PHPSECINFO_TEST_RESULT_NOTRUN;
 
 
     /**
@@ -74,7 +74,7 @@ class PhpSecInfo_Test
      *
      * @var string
      */
-    var $_message;
+    $_message;
 
 
     /**
@@ -82,14 +82,14 @@ class PhpSecInfo_Test
      *
      * @var string
      */
-    var $_language = PHPSECINFO_LANG_DEFAULT;
+    $_language = PHPSECINFO_LANG_DEFAULT;
 
     /**
      * Enter description here...
      *
      * @var mixed
      */
-    var $current_value;
+    $current_value;
 
     /**
      * This is a hash of messages that correspond to various test result levels.
@@ -101,7 +101,7 @@ class PhpSecInfo_Test
      *
      * @var array array
      */
-    var $_messages = array();
+    $_messages = array();
 
 
     /**
@@ -181,7 +181,6 @@ class PhpSecInfo_Test
     {
         $result = $this->_execTest();
         $this->_setResult($result);
-
     }
 
 
@@ -234,7 +233,6 @@ class PhpSecInfo_Test
         }
 
         $this->_messages[$result_code][$language_code] = $message;
-
     }
 
 
@@ -318,12 +316,13 @@ class PhpSecInfo_Test
             return $this->test_name;
         } else {
             return ucwords(
-                str_replace('_', ' ',
+                str_replace(
+                    '_',
+                    ' ',
                     get_class($this)
                 )
             );
         }
-
     }
 
 
@@ -410,7 +409,7 @@ class PhpSecInfo_Test
      */
     function getStringValue($val)
     {
-        if ($val === FALSE) {
+        if ($val === false) {
             return "0";
         } else {
             return (string)$val;
@@ -436,7 +435,6 @@ class PhpSecInfo_Test
         $ini_val = ini_get($ini_key);
 
         switch (strtolower($ini_val)) {
-
             case 'off':
                 return false;
                 break;
@@ -460,9 +458,7 @@ class PhpSecInfo_Test
                 break;
             default:
                 return $ini_val;
-
         }
-
     }
 
     /**
@@ -482,7 +478,7 @@ class PhpSecInfo_Test
                 return realpath($tmp);
             }
         }
-        return NULL;
+        return null;
     }
 
 
@@ -527,9 +523,11 @@ class PhpSecInfo_Test
         if (function_exists("exec") && !PhpSecInfo_Test::getBooleanIniValue('safe_mode')) {
             $id_raw = exec('id');
             // uid=1000(coj) gid=1000(coj) groups=1000(coj),1001(admin)
-            preg_match("|uid=(\d+)\((\S+)\)\s+gid=(\d+)\((\S+)\)\s+groups=(.+)|i",
+            preg_match(
+                "|uid=(\d+)\((\S+)\)\s+gid=(\d+)\((\S+)\)\s+groups=(.+)|i",
                 $id_raw,
-                $matches);
+                $matches
+            );
 
             if (!$matches) {
                 /**
@@ -559,10 +557,10 @@ class PhpSecInfo_Test
                 $id_data['groups'] = $groups;
                 $success = true;
             }
-
         }
 
-        if (!$success && function_exists("posix_getpwuid") && function_exists("posix_geteuid")
+        if (
+            !$success && function_exists("posix_getpwuid") && function_exists("posix_geteuid")
             && function_exists('posix_getgrgid') && function_exists('posix_getgroups')
         ) {
             $data = posix_getpwuid(posix_getuid());
@@ -586,5 +584,4 @@ class PhpSecInfo_Test
             return false;
         }
     }
-
 }

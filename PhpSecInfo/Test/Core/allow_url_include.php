@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Test Class for allow_url_include
  *
  * @package PhpSecInfo
  * @author Ed Finkler <coj@funkatron.com>
  */
-
 
 /**
  * require the PhpSecInfo_Test_Core class
@@ -26,10 +26,10 @@ class PhpSecInfo_Test_Core_Allow_Url_Include extends PhpSecInfo_Test_Core
      *
      * @var string
      */
-    var $test_name = "allow_url_include";
+    $test_name = "allow_url_include";
 
 
-    var $recommended_value = FALSE;
+    $recommended_value = false;
 
 
     function _retrieveCurrentValue()
@@ -73,6 +73,4 @@ class PhpSecInfo_Test_Core_Allow_Url_Include extends PhpSecInfo_Test_Core
         $this->setMessageForResult(PHPSECINFO_TEST_RESULT_OK, 'en', 'allow_url_include is disabled, which is the recommended setting');
         $this->setMessageForResult(PHPSECINFO_TEST_RESULT_WARN, 'en', 'allow_url_include is enabled.  This could be a serious security risk.  You should disable allow_url_include and consider using the <a href="http://php.net/manual/en/ref.curl.php" rel="noreferrer"  target="_blank">PHP cURL functions</a> instead.');
     }
-
-
 }

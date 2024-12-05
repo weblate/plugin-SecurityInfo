@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Test class for cgi force_redirect
  *
@@ -19,20 +20,19 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test_Cgi.php');
  */
 class PhpSecInfo_Test_Cgi_Force_Redirect extends PhpSecInfo_Test_Cgi
 {
-
     /**
      * This should be a <b>unique</b>, human-readable identifier for this test
      *
      * @var string
      */
-    var $test_name = "force_redirect";
+    $test_name = "force_redirect";
 
     /**
      * The recommended setting value
      *
      * @var mixed
      */
-    var $recommended_value = TRUE;
+    $recommended_value = true;
 
 
     function _retrieveCurrentValue()

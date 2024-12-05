@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Main class file
  *
@@ -6,30 +7,29 @@
  * @author Ed Finkler <coj@funkatron.com>
  */
 
-
 /**
  * The default language setting if none is set/retrievable
  *
  */
-define ('PHPSECINFO_LANG_DEFAULT', 'en');
+define('PHPSECINFO_LANG_DEFAULT', 'en');
 
 /**
  * a general version string to differentiate releases
  *
  */
-define ('PHPSECINFO_VERSION', '0.2.2');
+define('PHPSECINFO_VERSION', '0.2.2');
 
 /**
  * a YYYYMMDD date string to indicate "build" date
  *
  */
-define ('PHPSECINFO_BUILD', '20080723');
+define('PHPSECINFO_BUILD', '20080723');
 
 /**
  * Homepage for phpsecinfo project
  *
  */
-define ('PHPSECINFO_URL', 'http://phpsecinfo.com');
+define('PHPSECINFO_URL', 'http://phpsecinfo.com');
 
 /**
  * The base folder where views are stored.  Include trailing slash
@@ -94,13 +94,12 @@ define('PHPSECINFO_BASE_DIR', dirname(__FILE__));
  */
 class PhpSecInfo
 {
-
     /**
      * An array of tests to run
      *
      * @var array PhpSecInfo_Test
      */
-    var $tests_to_run = array();
+    $tests_to_run = array();
 
 
     /**
@@ -112,7 +111,7 @@ class PhpSecInfo
      *
      * @var array
      */
-    var $test_results = array();
+    $test_results = array();
 
 
     /**
@@ -125,7 +124,7 @@ class PhpSecInfo
      *
      * @var array
      */
-    var $tests_not_run = array();
+    $tests_not_run = array();
 
 
     /**
@@ -135,7 +134,7 @@ class PhpSecInfo
      * @var string
      * @see PHPSECINFO_LANG_DEFAULT
      */
-    var $language = PHPSECINFO_LANG_DEFAULT;
+    $language = PHPSECINFO_LANG_DEFAULT;
 
 
     /**
@@ -144,7 +143,7 @@ class PhpSecInfo
      *
      * @var array
      */
-    var $result_counts = array();
+    $result_counts = array();
 
 
     /**
@@ -152,14 +151,14 @@ class PhpSecInfo
      *
      * @var integer
      */
-    var $num_tests_run = 0;
+    $num_tests_run = 0;
 
 
     /**
      * The base directory for phpsecinfo. Set within the constructor. Paths are resolved from this.
      * @var string
      */
-    var $_base_dir;
+    $_base_dir;
 
 
     /**
@@ -169,7 +168,7 @@ class PhpSecInfo
      *
      * @var string
      */
-    var $_view_directory;
+    $_view_directory;
 
 
     /**
@@ -177,7 +176,7 @@ class PhpSecInfo
      *
      * @var string
      **/
-    var $_format;
+    $_format;
 
     /**
      * Constructor
@@ -206,7 +205,6 @@ class PhpSecInfo
                     $this->setFormat(PHPSECINFO_FORMAT_DEFAULT);
                 }
             }
-
         } else { /* Use defaults */
             $this->setViewDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . PHPSECINFO_VIEW_DIR_DEFAULT);
             if (!strcasecmp(PHP_SAPI, 'cli')) {
@@ -246,7 +244,6 @@ class PhpSecInfo
                     $classNames[] = "PhpSecInfo_Test_" . $test_dir . "_" . basename($entry, '.php');
                 }
             }
-
         }
 
         // modded this to not throw a PHP5 STRICT notice, although I don't like passing by value here
@@ -288,7 +285,7 @@ class PhpSecInfo
                 $this->test_results[$test->getTestGroup()][$test->getTestName()] = $rs;
 
                 // initialize if not yet set
-                if (!isset ($this->result_counts[$rs['result']])) {
+                if (!isset($this->result_counts[$rs['result']])) {
                     $this->result_counts[$rs['result']] = 0;
                 }
 
@@ -297,8 +294,8 @@ class PhpSecInfo
             } else {
                 $rs = array('result'            => $test->getResult(),
                             'message'           => $test->getMessage(),
-                            'value_current'     => NULL,
-                            'value_recommended' => NULL,
+                            'value_current'     => null,
+                            'value_recommended' => null,
                             'moreinfo_url'      => $test->getMoreInfoURL(),
                 );
                 $this->result_counts[PHPSECINFO_TEST_RESULT_NOTRUN]++;
@@ -368,7 +365,6 @@ class PhpSecInfo
         }
 
         $this->_outputRenderTable('Test Results Summary', $stats);
-
     }
 
 
@@ -381,7 +377,6 @@ class PhpSecInfo
     {
 
         $this->_outputRenderTable('Tests Not Run', $this->tests_not_run);
-
     }
 
 
@@ -421,7 +416,6 @@ class PhpSecInfo
                 return 'value-notrun';
                 break;
         }
-
     }
 
 
@@ -462,7 +456,6 @@ class PhpSecInfo
                 return 'Invalid Result Code';
                 break;
         }
-
     }
 
 
@@ -548,8 +541,6 @@ class PhpSecInfo
         } else {
             user_error("The view '{$view_file}' either does not exist or is not readable", E_USER_WARNING);
         }
-
-
     }
 
 
@@ -585,7 +576,6 @@ class PhpSecInfo
     {
         $this->_format = $format;
     }
-
 }
 
 
@@ -600,4 +590,3 @@ function phpsecinfo()
     $psi->loadAndRun();
     $psi->renderOutput();
 }
-

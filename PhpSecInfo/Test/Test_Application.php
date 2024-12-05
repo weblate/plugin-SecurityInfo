@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Skeleton Test class file for Application group
  *
  * @package PhpSecInfo
  * @author Anthon Pang
  */
+
 use Piwik\Http;
 
 /**
@@ -19,7 +21,6 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test.php');
  */
 class PhpSecInfo_Test_Application extends PhpSecInfo_Test
 {
-
     /**
      * This value is used to group test results together.
      *
@@ -27,7 +28,7 @@ class PhpSecInfo_Test_Application extends PhpSecInfo_Test
      *
      * @var string
      */
-    var $test_group = 'Application';
+    $test_group = 'Application';
 
 
     /**

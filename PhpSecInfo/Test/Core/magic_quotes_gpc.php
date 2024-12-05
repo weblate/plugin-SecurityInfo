@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Test Class for magic_quotes_gpc
  *
  * @package PhpSecInfo
  * @author Ed Finkler <coj@funkatron.com>
  */
-
 
 /**
  * require the PhpSecInfo_Test_Core class
@@ -24,10 +24,10 @@ class PhpSecInfo_Test_Core_Magic_Quotes_GPC extends PhpSecInfo_Test_Core
      *
      * @var string
      */
-    var $test_name = "magic_quotes_gpc";
+    $test_name = "magic_quotes_gpc";
 
 
-    var $recommended_value = FALSE;
+    $recommended_value = false;
 
 
     function _retrieveCurrentValue()
@@ -76,6 +76,4 @@ class PhpSecInfo_Test_Core_Magic_Quotes_GPC extends PhpSecInfo_Test_Core
 				recommended that magic_quotes_gpc be disabled, and input filtering be handled by your PHP
 				scripts');
     }
-
-
 }

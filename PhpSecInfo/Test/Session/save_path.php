@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Test class for session save_path
  *
@@ -18,15 +19,14 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test_Session.php');
  */
 class PhpSecInfo_Test_Session_Save_Path extends PhpSecInfo_Test_Session
 {
-
     /**
      * This should be a <b>unique</b>, human-readable identifier for this test
      *
      * @var string
      */
-    var $test_name = "save_path";
+    $test_name = "save_path";
 
-    var $recommended_value = "A non-world readable/writable directory";
+    $recommended_value = "A non-world readable/writable directory";
 
     function _retrieveCurrentValue()
     {
@@ -55,9 +55,9 @@ class PhpSecInfo_Test_Session_Save_Path extends PhpSecInfo_Test_Session
     function isTestable()
     {
         if ($this->osIsWindows()) {
-            return FALSE;
+            return false;
         } else {
-            return TRUE;
+            return true;
         }
     }
 
@@ -76,7 +76,8 @@ class PhpSecInfo_Test_Session_Save_Path extends PhpSecInfo_Test_Session
         $perms = @fileperms($this->current_value);
         if ($perms === false) {
             return PHPSECINFO_TEST_RESULT_WARN;
-        } else if ($this->current_value
+        } elseif (
+            $this->current_value
             && !preg_match("|^" . PHPSECINFO_TEST_COMMON_TMPDIR . "/?|", $this->current_value)
             && !($perms & 0x0004)
             && !($perms & 0x0002)
@@ -105,5 +106,4 @@ class PhpSecInfo_Test_Session_Save_Path extends PhpSecInfo_Test_Session
 						common world-writable directory.  This typically allows other users on this server
 						to access session files. You should set	save_path to a non-world-readable directory');
     }
-
 }

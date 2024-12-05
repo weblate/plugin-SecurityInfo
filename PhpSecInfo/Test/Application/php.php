@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Test class for PHP Application
  *
  * @package PhpSecInfo
  * @author Piwik
  */
+
 use Piwik\Http;
 
 /**
@@ -23,9 +25,9 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test_Application.php');
 class PhpSecInfo_Test_Application_Php extends PhpSecInfo_Test_Application
 {
     const SOCKET_TIMEOUT = 2;
-    var $test_name = "PHP";
+    $test_name = "PHP";
 
-    var $recommended_value = null;
+    $recommended_value = null;
 
     function _retrieveCurrentValue()
     {
@@ -67,7 +69,7 @@ class PhpSecInfo_Test_Application_Php extends PhpSecInfo_Test_Application
     {
         parent::_setMessages();
 
-        if(\Piwik\Common::getRequestVar('tests_hide_piwik_version', 0, 'int') == 1) {
+        if (\Piwik\Common::getRequestVar('tests_hide_piwik_version', 0, 'int') == 1) {
             $this->recommended_value = 'Screenshot testing - Version is hidden';
             $this->current_value = 'PHP MAX HACK';
         }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Test Class for upload_tmp_dir
  *
@@ -18,15 +19,14 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test_Core.php');
  */
 class PhpSecInfo_Test_Core_Upload_Tmp_Dir extends PhpSecInfo_Test_Core
 {
-
     /**
      * This should be a <b>unique</b>, human-readable identifier for this test
      *
      * @var string
      */
-    var $test_name = "upload_tmp_dir";
+    $test_name = "upload_tmp_dir";
 
-    var $recommended_value = "A non-world readable/writable directory";
+    $recommended_value = "A non-world readable/writable directory";
 
     function _retrieveCurrentValue()
     {
@@ -50,9 +50,9 @@ class PhpSecInfo_Test_Core_Upload_Tmp_Dir extends PhpSecInfo_Test_Core
     function isTestable()
     {
         if ($this->osIsWindows()) {
-            return FALSE;
+            return false;
         } else {
-            return TRUE;
+            return true;
         }
     }
 
@@ -70,7 +70,8 @@ class PhpSecInfo_Test_Core_Upload_Tmp_Dir extends PhpSecInfo_Test_Core
         $perms = @fileperms($this->current_value);
         if ($perms === false) {
             return PHPSECINFO_TEST_RESULT_WARN;
-        } else if ($this->current_value
+        } elseif (
+            $this->current_value
             && !preg_match("%^" . PHPSECINFO_TEST_COMMON_TMPDIR . "(/|$)%", $this->current_value)
             && !($perms & 0x0004)
             && !($perms & 0x0002)
@@ -100,5 +101,4 @@ class PhpSecInfo_Test_Core_Upload_Tmp_Dir extends PhpSecInfo_Test_Core
 						to access temporary copies of files uploaded via your PHP scripts.  You should set
 						upload_tmp_dir to a non-world-readable directory');
     }
-
 }

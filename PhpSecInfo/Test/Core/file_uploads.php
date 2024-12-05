@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Test Class for file_uploads
  *
  * @package PhpSecInfo
  * @author Ed Finkler <coj@funkatron.com>
  */
-
 
 /**
  * require the PhpSecInfo_Test_Core class
@@ -19,15 +19,14 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test_Core.php');
  */
 class PhpSecInfo_Test_Core_File_Uploads extends PhpSecInfo_Test_Core
 {
-
     /**
      * This should be a <b>unique</b>, human-readable identifier for this test
      *
      * @var string
      */
-    var $test_name = "file_uploads";
+    $test_name = "file_uploads";
 
-    var $recommended_value = FALSE;
+    $recommended_value = false;
 
     function _retrieveCurrentValue()
     {
@@ -58,6 +57,4 @@ class PhpSecInfo_Test_Core_File_Uploads extends PhpSecInfo_Test_Core
         $this->setMessageForResult(PHPSECINFO_TEST_RESULT_OK, 'en', 'file_uploads are disabled.  Unless you\'re sure you need them, this is the recommended setting');
         $this->setMessageForResult(PHPSECINFO_TEST_RESULT_NOTICE, 'en', 'file_uploads are enabled.  If you do not require file upload capability, consider disabling them.');
     }
-
-
 }

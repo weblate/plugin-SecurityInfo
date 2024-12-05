@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Test class for GID
  *
  * @package PhpSecInfo
  * @author Ed Finkler <coj@funkatron.com>
  */
-
 
 /**
  * require the PhpSecInfo_Test_Core class
@@ -18,7 +18,7 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test_Core.php');
  * but in general 100 seems like a good min.
  *
  */
-define ('PHPSECINFO_MIN_SAFE_GID', 100);
+define('PHPSECINFO_MIN_SAFE_GID', 100);
 
 /**
  * Test class for GID
@@ -27,15 +27,14 @@ define ('PHPSECINFO_MIN_SAFE_GID', 100);
  */
 class PhpSecInfo_Test_Core_Gid extends PhpSecInfo_Test_Core
 {
-
     /**
      * This should be a <b>unique</b>, human-readable identifier for this test
      *
      * @var string
      */
-    var $test_name = "group_id";
+    $test_name = "group_id";
 
-    var $recommended_value = PHPSECINFO_MIN_SAFE_GID;
+    $recommended_value = PHPSECINFO_MIN_SAFE_GID;
 
 
     /**
@@ -91,6 +90,4 @@ class PhpSecInfo_Test_Core_Gid extends PhpSecInfo_Test_Core
         $this->setMessageForResult(PHPSECINFO_TEST_RESULT_WARN, 'en', 'PHP may be executing as a "privileged" group, which could be a serious security vulnerability.');
         $this->setMessageForResult(PHPSECINFO_TEST_RESULT_NOTRUN, 'en', 'This test will not run on Windows OSes');
     }
-
-
 }

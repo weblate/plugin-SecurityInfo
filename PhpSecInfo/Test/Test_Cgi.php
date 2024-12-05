@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Skeleton Test class file for Cgi group
  *
@@ -18,7 +19,6 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test.php');
  */
 class PhpSecInfo_Test_Cgi extends PhpSecInfo_Test
 {
-
     /**
      * This value is used to group test results together.
      *
@@ -26,7 +26,7 @@ class PhpSecInfo_Test_Cgi extends PhpSecInfo_Test
      *
      * @var string
      */
-    var $test_group = 'CGI';
+    $test_group = 'CGI';
 
 
     /**
@@ -54,7 +54,5 @@ class PhpSecInfo_Test_Cgi extends PhpSecInfo_Test
         parent::_setMessages();
 
         $this->setMessageForResult(PHPSECINFO_TEST_RESULT_NOTRUN, 'en', "You don't seem to be using the CGI SAPI");
-
     }
-
 }

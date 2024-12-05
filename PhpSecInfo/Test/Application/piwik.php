@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Test class for Piwik Application
  *
  * @package PhpSecInfo
  * @author Piwik
  */
+
 use Piwik\UpdateCheck;
 use Piwik\Version;
 
@@ -23,9 +25,9 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test_Application.php');
  */
 class PhpSecInfo_Test_Application_Piwik extends PhpSecInfo_Test_Application
 {
-    var $test_name = "Matomo";
+    $test_name = "Matomo";
 
-    var $recommended_value = null;
+    $recommended_value = null;
 
     function _retrieveCurrentValue()
     {
@@ -58,7 +60,7 @@ class PhpSecInfo_Test_Application_Piwik extends PhpSecInfo_Test_Application
         $piwikVersion = $this->current_value;
         $recommendedValue = $this->recommended_value;
 
-        if(\Piwik\Common::getRequestVar('tests_hide_piwik_version', 0, 'int') == 1) {
+        if (\Piwik\Common::getRequestVar('tests_hide_piwik_version', 0, 'int') == 1) {
             $piwikVersion = $recommendedValue = 'Screenshot testing - Version is hidden';
         }
 
