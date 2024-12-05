@@ -22,6 +22,14 @@
     <rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
         <!-- Classnames for our update files don't match PascalCase, this can't be changed easily -->
         <exclude-pattern>Updates/*</exclude-pattern>
+        <exclude-pattern>PhpSecInfo/*</exclude-pattern>
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
+        <!-- Allow using method name with underscore prefix -->
+        <exclude-pattern>PhpSecInfo/*</exclude-pattern>
+        <exclude-pattern>tests/*</exclude-pattern>
     </rule>
 
     <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
@@ -32,5 +40,11 @@
     <rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">
         <!-- Allow using multiple classes in one file for tests -->
         <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <!-- Allow no namespace -->
+        <exclude-pattern>PhpSecInfo/PhpSecInfo.php</exclude-pattern>
+        <exclude-pattern>PhpSecInfo/Test/*</exclude-pattern>
     </rule>
 </ruleset>
