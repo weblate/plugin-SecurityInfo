@@ -99,7 +99,7 @@ class PhpSecInfo
      *
      * @var array PhpSecInfo_Test
      */
-    $tests_to_run = array();
+    public $tests_to_run = array();
 
 
     /**
@@ -111,7 +111,7 @@ class PhpSecInfo
      *
      * @var array
      */
-    $test_results = array();
+    public $test_results = array();
 
 
     /**
@@ -124,7 +124,7 @@ class PhpSecInfo
      *
      * @var array
      */
-    $tests_not_run = array();
+    public $tests_not_run = array();
 
 
     /**
@@ -134,7 +134,7 @@ class PhpSecInfo
      * @var string
      * @see PHPSECINFO_LANG_DEFAULT
      */
-    $language = PHPSECINFO_LANG_DEFAULT;
+    public $language = PHPSECINFO_LANG_DEFAULT;
 
 
     /**
@@ -143,7 +143,7 @@ class PhpSecInfo
      *
      * @var array
      */
-    $result_counts = array();
+    public $result_counts = array();
 
 
     /**
@@ -151,14 +151,14 @@ class PhpSecInfo
      *
      * @var integer
      */
-    $num_tests_run = 0;
+    public $num_tests_run = 0;
 
 
     /**
      * The base directory for phpsecinfo. Set within the constructor. Paths are resolved from this.
      * @var string
      */
-    $_base_dir;
+    public $_base_dir;
 
 
     /**
@@ -168,7 +168,7 @@ class PhpSecInfo
      *
      * @var string
      */
-    $_view_directory;
+    public $_view_directory;
 
 
     /**
@@ -176,7 +176,7 @@ class PhpSecInfo
      *
      * @var string
      **/
-    $_format;
+    public $_format;
 
     /**
      * Constructor
@@ -184,7 +184,7 @@ class PhpSecInfo
      * @param null|array $opts
      * @return PhpSecInfo
      */
-    function __construct($opts = null)
+    public function __construct($opts = null)
     {
 
         $this->_base_dir = dirname(__FILE__);
@@ -220,7 +220,7 @@ class PhpSecInfo
      * recurses through the Test subdir and includes classes in each test group subdir,
      * then builds an array of classnames for the tests that will be run
      */
-    function loadTests()
+    public function loadTests()
     {
 
         $test_root = dir(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Test');
@@ -259,7 +259,7 @@ class PhpSecInfo
      * - $this->num_tests_run
      * - $this->tests_not_run;
      */
-    function runTests()
+    public function runTests()
     {
         // initialize a bunch of arrays
         $this->test_results = array();
@@ -308,7 +308,7 @@ class PhpSecInfo
     /**
      * This is the main output method.  The look and feel mimics phpinfo()
      */
-    function renderOutput($page_title = "Security Information About PHP")
+    public function renderOutput($page_title = "Security Information About PHP")
     {
         /**
          * We need to use PhpSecInfo_Test::getBooleanIniValue() below
@@ -329,7 +329,7 @@ class PhpSecInfo
      * @param array $group_results
      * @return bool
      */
-    function _outputRenderTable($group_name, $group_results)
+    public function _outputRenderTable($group_name, $group_results)
     {
 
         // exit out if $group_results was empty or not an array.  This sorta seems a little hacky...
@@ -351,7 +351,7 @@ class PhpSecInfo
      * @see PHPSecInfo::_outputRenderTable()
      * @see PHPSecInfo::_outputGetResultTypeFromCode()
      */
-    function _outputRenderStatsTable()
+    public function _outputRenderStatsTable()
     {
 
         foreach ($this->result_counts as $code => $val) {
@@ -373,7 +373,7 @@ class PhpSecInfo
      *
      * @see PHPSecInfo::_outputRenderTable()
      */
-    function _outputRenderNotRunTable()
+    public function _outputRenderNotRunTable()
     {
 
         $this->_outputRenderTable('Tests Not Run', $this->tests_not_run);
@@ -388,7 +388,7 @@ class PhpSecInfo
      * @param integer $code
      * @return string
      */
-    function _outputGetCssClassFromResult($code)
+    public function _outputGetCssClassFromResult($code)
     {
 
         switch ($code) {
@@ -428,7 +428,7 @@ class PhpSecInfo
      * @param integer $code
      * @return string
      */
-    function _outputGetResultTypeFromCode($code)
+    public function _outputGetResultTypeFromCode($code)
     {
 
         switch ($code) {
@@ -466,7 +466,7 @@ class PhpSecInfo
      *
      * @since 0.1.1
      */
-    function loadAndRun()
+    public function loadAndRun()
     {
         $this->loadTests();
         $this->runTests();
@@ -485,7 +485,7 @@ class PhpSecInfo
      * @since 0.1.1
      * @return array
      */
-    function getResultsAsArray()
+    public function getResultsAsArray()
     {
         $results = array();
 
@@ -514,7 +514,7 @@ class PhpSecInfo
      *
      * @return string
      */
-    function getOutput()
+    public function getOutput()
     {
         ob_start();
         $this->renderOutput();
@@ -526,7 +526,7 @@ class PhpSecInfo
     /**
      * A very, very simple "view" system
      */
-    function loadView($view_name, $data = null)
+    public function loadView($view_name, $data = null)
     {
         if ($data != null) {
             extract($data);
@@ -549,7 +549,7 @@ class PhpSecInfo
      *
      * @return string
      */
-    function getViewDirectory()
+    public function getViewDirectory()
     {
         return $this->_view_directory;
     }
@@ -560,19 +560,19 @@ class PhpSecInfo
      *
      * @param string $newdir
      */
-    function setViewDirectory($newdir)
+    public function setViewDirectory($newdir)
     {
         $this->_view_directory = $newdir;
     }
 
 
-    function getFormat()
+    public function getFormat()
     {
         return $this->_format;
     }
 
 
-    function setFormat($format)
+    public function setFormat($format)
     {
         $this->_format = $format;
     }

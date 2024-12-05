@@ -24,11 +24,11 @@ class PhpSecInfo_Test_Core_Expose_Php extends PhpSecInfo_Test_Core
      *
      * @var string
      */
-    $test_name = "expose_php";
+    public $test_name = "expose_php";
 
-    $recommended_value = false;
+    public $recommended_value = false;
 
-    function _retrieveCurrentValue()
+    public function _retrieveCurrentValue()
     {
         $this->current_value = $this->returnBytes(ini_get('expose_php'));
     }
@@ -36,7 +36,7 @@ class PhpSecInfo_Test_Core_Expose_Php extends PhpSecInfo_Test_Core
     /**
      * Checks to see if expose_php is enabled
      */
-    function _execTest()
+    public function _execTest()
     {
 
         if ($this->current_value == $this->recommended_value) {
@@ -50,7 +50,7 @@ class PhpSecInfo_Test_Core_Expose_Php extends PhpSecInfo_Test_Core
     /**
      * Set the messages specific to this test
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 

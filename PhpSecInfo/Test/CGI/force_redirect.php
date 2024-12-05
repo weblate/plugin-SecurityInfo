@@ -25,17 +25,17 @@ class PhpSecInfo_Test_Cgi_Force_Redirect extends PhpSecInfo_Test_Cgi
      *
      * @var string
      */
-    $test_name = "force_redirect";
+    public $test_name = "force_redirect";
 
     /**
      * The recommended setting value
      *
      * @var mixed
      */
-    $recommended_value = true;
+    public $recommended_value = true;
 
 
-    function _retrieveCurrentValue()
+    public function _retrieveCurrentValue()
     {
         $this->current_value = $this->getBooleanIniValue('cgi.force_redirect');
     }
@@ -64,7 +64,7 @@ class PhpSecInfo_Test_Cgi_Force_Redirect extends PhpSecInfo_Test_Cgi
     /**
      * Checks to see if cgi.force_redirect is enabled
      */
-    function _execTest()
+    public function _execTest()
     {
         if ($this->current_value == $this->recommended_value) {
             return PHPSECINFO_TEST_RESULT_OK;
@@ -81,7 +81,7 @@ class PhpSecInfo_Test_Cgi_Force_Redirect extends PhpSecInfo_Test_Cgi
     /**
      * Set the messages specific to this test
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 
@@ -89,10 +89,24 @@ class PhpSecInfo_Test_Cgi_Force_Redirect extends PhpSecInfo_Test_Cgi
         $ini = ini_get_all();
         if (isset($ini['cgi.force_redirect'])) {
             $this->setMessageForResult(PHPSECINFO_TEST_RESULT_NOTICE, 'en', "force_redirect is disabled.  In most cases, this is a security vulnerability, but it appears this is not needed because you are running " . $this->skipTest());
-            $this->setMessageForResult(PHPSECINFO_TEST_RESULT_WARN, 'en', "force_redirect is disabled.  In most cases, this is a <strong>serious</strong> security vulnerability.  Unless you are absolutely sure this is not needed, enable this setting");
+            $this->setMessageForResult(
+                PHPSECINFO_TEST_RESULT_WARN,
+                'en',
+                "force_redirect is disabled.  In most cases, this is a <strong>serious</strong> security vulnerability.  Unless you are absolutely sure this is not needed, enable this setting"
+            );
         } else {
-            $this->setMessageForResult(PHPSECINFO_TEST_RESULT_NOTICE, 'en', "force_redirect is disabled because php was not compiled with --enable-force-cgi-redirect.  In most cases, this is a security vulnerability, but it appears this is not needed because you are running " . $this->skipTest());
-            $this->setMessageForResult(PHPSECINFO_TEST_RESULT_WARN, 'en', "force_redirect is disabled because php was not compiled with --enable-force-cgi-redirect.  In most cases, this is a <strong>serious</strong> security vulnerability.  Unless you are absolutely sure this is not needed, recompile php with --enable-force-cgi-redirect and enable cgi.force_redirect");
+            $this->setMessageForResult(
+                PHPSECINFO_TEST_RESULT_NOTICE,
+                'en',
+                "force_redirect is disabled because php was not compiled with --enable-force-cgi-redirect.  In most cases, this is a security vulnerability, but it appears this is not needed because you are running " . $this->skipTest()
+            );
+            $message = "force_redirect is disabled because php was not compiled with --enable-force-cgi-redirect.  In most cases, this is a <strong>serious</strong> security vulnerability."
+                . "  Unless you are absolutely sure this is not needed, recompile php with --enable-force-cgi-redirect and enable cgi.force_redirect"
+            $this->setMessageForResult(
+                PHPSECINFO_TEST_RESULT_WARN,
+                'en',
+                $message
+            );
         }
     }
 }

@@ -26,7 +26,7 @@ class PhpSecInfo_Test_Cgi extends PhpSecInfo_Test
      *
      * @var string
      */
-    $test_group = 'CGI';
+    public $test_group = 'CGI';
 
 
     /**
@@ -35,7 +35,7 @@ class PhpSecInfo_Test_Cgi extends PhpSecInfo_Test
      *
      * @return boolean
      */
-    function isTestable()
+    public function isTestable()
     {
         /*if ( preg_match('/^cgi.*$/', PHP_SAPI) ) {
             return true;
@@ -49,7 +49,7 @@ class PhpSecInfo_Test_Cgi extends PhpSecInfo_Test
     /**
      * Set the messages for CGI tests
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 

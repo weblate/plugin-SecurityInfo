@@ -30,11 +30,11 @@ class PhpSecInfo_Test_Core_Post_Max_Size extends PhpSecInfo_Test_Core
      *
      * @var string
      */
-    $test_name = "post_max_size";
+    public $test_name = "post_max_size";
 
-    $recommended_value = PHPSECINFO_POST_MAXLIMIT;
+    public $recommended_value = PHPSECINFO_POST_MAXLIMIT;
 
-    function _retrieveCurrentValue()
+    public function _retrieveCurrentValue()
     {
         $this->current_value = $this->returnBytes(ini_get('post_max_size'));
     }
@@ -42,7 +42,7 @@ class PhpSecInfo_Test_Core_Post_Max_Size extends PhpSecInfo_Test_Core
     /**
      * Check to see if the post_max_size setting is enabled.
      */
-    function _execTest()
+    public function _execTest()
     {
 
         if (
@@ -60,7 +60,7 @@ class PhpSecInfo_Test_Core_Post_Max_Size extends PhpSecInfo_Test_Core
     /**
      * Set the messages specific to this test
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 

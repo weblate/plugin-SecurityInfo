@@ -25,13 +25,13 @@ class PhpSecInfo_Test_Core_Register_Globals extends PhpSecInfo_Test_Core
      *
      * @var string
      */
-    $test_name = "register_globals";
+    public $test_name = "register_globals";
 
 
-    $recommended_value = false;
+    public $recommended_value = false;
 
 
-    function _retrieveCurrentValue()
+    public function _retrieveCurrentValue()
     {
         $this->current_value = $this->getBooleanIniValue('register_globals');
     }
@@ -42,7 +42,7 @@ class PhpSecInfo_Test_Core_Register_Globals extends PhpSecInfo_Test_Core
      *
      * @return boolean
      */
-    function isTestable()
+    public function isTestable()
     {
         return version_compare(PHP_VERSION, '6', '<');
     }
@@ -51,7 +51,7 @@ class PhpSecInfo_Test_Core_Register_Globals extends PhpSecInfo_Test_Core
     /**
      * Checks to see if allow_url_fopen is enabled
      */
-    function _execTest()
+    public function _execTest()
     {
         if ($this->current_value == $this->recommended_value) {
             return PHPSECINFO_TEST_RESULT_OK;
@@ -64,7 +64,7 @@ class PhpSecInfo_Test_Core_Register_Globals extends PhpSecInfo_Test_Core
     /**
      * Set the messages specific to this test
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 

@@ -26,7 +26,7 @@ class PhpSecInfo_Test_Curl extends PhpSecInfo_Test
      *
      * @var string
      */
-    $test_group = 'Curl';
+    public $test_group = 'Curl';
 
 
     /**
@@ -35,7 +35,7 @@ class PhpSecInfo_Test_Curl extends PhpSecInfo_Test
      *
      * @return boolean
      */
-    function isTestable()
+    public function isTestable()
     {
         /*      if ( function_exists('curl_init') ) {
                     return true;
@@ -50,7 +50,7 @@ class PhpSecInfo_Test_Curl extends PhpSecInfo_Test
     /**
      * Set the messages for Curl tests
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 

@@ -24,12 +24,12 @@ class PhpSecInfo_Test_Core_Open_Basedir extends PhpSecInfo_Test_Core
      *
      * @var string
      */
-    $test_name = "open_basedir";
+    public $test_name = "open_basedir";
 
-    $recommended_value = true;
+    public $recommended_value = true;
 
 
-    function _retrieveCurrentValue()
+    public function _retrieveCurrentValue()
     {
         $this->current_value = $this->getBooleanIniValue('open_basedir');
     }
@@ -38,7 +38,7 @@ class PhpSecInfo_Test_Core_Open_Basedir extends PhpSecInfo_Test_Core
     /**
      * Checks to see if allow_url_fopen is enabled
      */
-    function _execTest()
+    public function _execTest()
     {
         if ($this->current_value == $this->recommended_value) {
             return PHPSECINFO_TEST_RESULT_OK;
@@ -51,7 +51,7 @@ class PhpSecInfo_Test_Core_Open_Basedir extends PhpSecInfo_Test_Core
     /**
      * Set the messages specific to this test
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 

@@ -25,13 +25,13 @@ class PhpSecInfo_Test_Session_Use_Trans_Sid extends PhpSecInfo_Test_Session
      *
      * @var string
      */
-    $test_name = "use_trans_sid";
+    public $test_name = "use_trans_sid";
 
 
-    $recommended_value = false;
+    public $recommended_value = false;
 
 
-    function _retrieveCurrentValue()
+    public function _retrieveCurrentValue()
     {
         $this->current_value = $this->getBooleanIniValue('session.use_trans_sid');
     }
@@ -40,7 +40,7 @@ class PhpSecInfo_Test_Session_Use_Trans_Sid extends PhpSecInfo_Test_Session
     /**
      * Checks to see if allow_url_fopen is enabled
      */
-    function _execTest()
+    public function _execTest()
     {
         if ($this->current_value == $this->recommended_value) {
             return PHPSECINFO_TEST_RESULT_OK;
@@ -53,7 +53,7 @@ class PhpSecInfo_Test_Session_Use_Trans_Sid extends PhpSecInfo_Test_Session
     /**
      * Set the messages specific to this test
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 

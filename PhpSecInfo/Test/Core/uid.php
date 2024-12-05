@@ -32,16 +32,16 @@ class PhpSecInfo_Test_Core_Uid extends PhpSecInfo_Test_Core
      *
      * @var string
      */
-    $test_name = "user_id";
+    public $test_name = "user_id";
 
-    $recommended_value = PHPSECINFO_MIN_SAFE_UID;
+    public $recommended_value = PHPSECINFO_MIN_SAFE_UID;
 
     /**
      * This test only works under Unix OSes
      *
      * @return boolean
      */
-    function isTestable()
+    public function isTestable()
     {
         if ($this->osIsWindows()) {
             return false;
@@ -53,7 +53,7 @@ class PhpSecInfo_Test_Core_Uid extends PhpSecInfo_Test_Core
     }
 
 
-    function _retrieveCurrentValue()
+    public function _retrieveCurrentValue()
     {
         $id = $this->getUnixId();
         if (is_array($id)) {
@@ -68,7 +68,7 @@ class PhpSecInfo_Test_Core_Uid extends PhpSecInfo_Test_Core
      *
      * @see PHPSECINFO_MIN_SAFE_UID
      */
-    function _execTest()
+    public function _execTest()
     {
         if ($this->current_value >= $this->recommended_value) {
             return PHPSECINFO_TEST_RESULT_OK;
@@ -81,7 +81,7 @@ class PhpSecInfo_Test_Core_Uid extends PhpSecInfo_Test_Core
     /**
      * Set the messages specific to this test
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 

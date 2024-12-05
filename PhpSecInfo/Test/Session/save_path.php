@@ -24,11 +24,11 @@ class PhpSecInfo_Test_Session_Save_Path extends PhpSecInfo_Test_Session
      *
      * @var string
      */
-    $test_name = "save_path";
+    public $test_name = "save_path";
 
-    $recommended_value = "A non-world readable/writable directory";
+    public $recommended_value = "A non-world readable/writable directory";
 
-    function _retrieveCurrentValue()
+    public function _retrieveCurrentValue()
     {
         $this->current_value = ini_get('session.save_path');
 
@@ -52,7 +52,7 @@ class PhpSecInfo_Test_Session_Save_Path extends PhpSecInfo_Test_Session
      *
      * @return bool
      */
-    function isTestable()
+    public function isTestable()
     {
         if ($this->osIsWindows()) {
             return false;
@@ -70,7 +70,7 @@ class PhpSecInfo_Test_Session_Save_Path extends PhpSecInfo_Test_Session
      *
      * @see PHPSECINFO_TEST_COMMON_TMPDIR
      */
-    function _execTest()
+    public function _execTest()
     {
 
         $perms = @fileperms($this->current_value);
@@ -94,7 +94,7 @@ class PhpSecInfo_Test_Session_Save_Path extends PhpSecInfo_Test_Session
     /**
      * Set the messages specific to this test
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 
