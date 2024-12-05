@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Skeleton Test class file for ` group
  *
@@ -18,7 +19,6 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test.php');
  */
 class PhpSecInfo_Test_Curl extends PhpSecInfo_Test
 {
-
     /**
      * This value is used to group test results together.
      *
@@ -26,7 +26,7 @@ class PhpSecInfo_Test_Curl extends PhpSecInfo_Test
      *
      * @var string
      */
-    var $test_group = 'Curl';
+    public $test_group = 'Curl';
 
 
     /**
@@ -35,9 +35,9 @@ class PhpSecInfo_Test_Curl extends PhpSecInfo_Test
      *
      * @return boolean
      */
-    function isTestable()
+    public function isTestable()
     {
-        /*		if ( function_exists('curl_init') ) {
+        /*      if ( function_exists('curl_init') ) {
                     return true;
                 } else {
                     return false;
@@ -50,12 +50,10 @@ class PhpSecInfo_Test_Curl extends PhpSecInfo_Test
     /**
      * Set the messages for Curl tests
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 
         $this->setMessageForResult(PHPSECINFO_TEST_RESULT_NOTRUN, 'en', "CURL support is not enabled in your PHP install");
-
     }
-
 }

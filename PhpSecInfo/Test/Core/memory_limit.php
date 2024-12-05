@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Test Class for memory_limit setting
  *
@@ -7,7 +8,6 @@
  * @author  Ed Finkler
  * @author  Mark Wallaert <mark@autumnweave.com>
  */
-
 
 /**
  * require the PhpSecInfo_Test_Core class
@@ -18,7 +18,7 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test_Core.php');
  * The max recommended size for the memory_limit setting, in bytes
  *
  */
-define ('PHPSECINFO_MEMORY_LIMIT', 8 * 1024 * 1024);
+define('PHPSECINFO_MEMORY_LIMIT', 8 * 1024 * 1024);
 
 /**
  * Test Class for memory_limit setting
@@ -27,18 +27,16 @@ define ('PHPSECINFO_MEMORY_LIMIT', 8 * 1024 * 1024);
  */
 class PhpSecInfo_Test_Core_Memory_Limit extends PhpSecInfo_Test_Core
 {
-
-
     /**
      * This should be a <b>unique</b>, human-readable identifier for this test
      *
      * @var string
      */
-    var $test_name = "memory_limit";
+    public $test_name = "memory_limit";
 
-    var $recommended_value = PHPSECINFO_MEMORY_LIMIT;
+    public $recommended_value = PHPSECINFO_MEMORY_LIMIT;
 
-    function _retrieveCurrentValue()
+    public function _retrieveCurrentValue()
     {
         $this->current_value = $this->returnBytes(ini_get('memory_limit'));
     }
@@ -54,11 +52,11 @@ class PhpSecInfo_Test_Core_Memory_Limit extends PhpSecInfo_Test_Core
      *
      * @return integer
      */
-    function _execTest()
+    public function _execTest()
     {
         if (!$this->current_value) {
             return PHPSECINFO_TEST_RESULT_WARN;
-        } else if ($this->returnBytes($this->current_value) <= PHPSECINFO_MEMORY_LIMIT) {
+        } elseif ($this->returnBytes($this->current_value) <= PHPSECINFO_MEMORY_LIMIT) {
             return PHPSECINFO_TEST_RESULT_OK;
         }
         return PHPSECINFO_TEST_RESULT_NOTICE;
@@ -71,7 +69,7 @@ class PhpSecInfo_Test_Core_Memory_Limit extends PhpSecInfo_Test_Core
      * @access    public
      * @return    null
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
         $this->setMessageForResult(PHPSECINFO_TEST_RESULT_OK, 'en', 'memory_limit is enabled, and appears to be set
@@ -86,6 +84,4 @@ class PhpSecInfo_Test_Core_Memory_Limit extends PhpSecInfo_Test_Core
 				including the parameter "--enable-memory-limit" in the configure line.  Once enabled "memory_limit" may
 				be set in php.ini to define the maximum amount of memory a script is allowed to allocate.');
     }
-
-
 }

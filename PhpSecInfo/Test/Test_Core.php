@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Skeleton Test class file for Core group
  *
@@ -18,7 +19,6 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test.php');
  */
 class PhpSecInfo_Test_Core extends PhpSecInfo_Test
 {
-
     /**
      * This value is used to group test results together.
      *
@@ -26,7 +26,7 @@ class PhpSecInfo_Test_Core extends PhpSecInfo_Test
      *
      * @var string
      */
-    var $test_group = 'Core';
+    public $test_group = 'Core';
 
 
     /**
@@ -34,11 +34,9 @@ class PhpSecInfo_Test_Core extends PhpSecInfo_Test
      *
      * @return boolean
      */
-    function isTestable()
+    public function isTestable()
     {
 
         return true;
     }
-
-
 }

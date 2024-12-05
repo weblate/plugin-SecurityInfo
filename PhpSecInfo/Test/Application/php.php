@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Test class for PHP Application
  *
  * @package PhpSecInfo
  * @author Piwik
  */
+
 use Piwik\Http;
 
 /**
@@ -22,12 +24,12 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test_Application.php');
  */
 class PhpSecInfo_Test_Application_Php extends PhpSecInfo_Test_Application
 {
-    const SOCKET_TIMEOUT = 2;
-    var $test_name = "PHP";
+    public const SOCKET_TIMEOUT = 2;
+    public $test_name = "PHP";
 
-    var $recommended_value = null;
+    public $recommended_value = null;
 
-    function _retrieveCurrentValue()
+    public function _retrieveCurrentValue()
     {
         $this->current_value = PHP_VERSION;
 
@@ -46,7 +48,7 @@ class PhpSecInfo_Test_Application_Php extends PhpSecInfo_Test_Application
         }
     }
 
-    function _execTest()
+    public function _execTest()
     {
         if (version_compare($this->current_value, '5.2.1') < 0) {
             return PHPSECINFO_TEST_RESULT_WARN;
@@ -63,11 +65,11 @@ class PhpSecInfo_Test_Application_Php extends PhpSecInfo_Test_Application
         return PHPSECINFO_TEST_RESULT_NOTICE;
     }
 
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 
-        if(\Piwik\Common::getRequestVar('tests_hide_piwik_version', 0, 'int') == 1) {
+        if (\Piwik\Common::getRequestVar('tests_hide_piwik_version', 0, 'int') == 1) {
             $this->recommended_value = 'Screenshot testing - Version is hidden';
             $this->current_value = 'PHP MAX HACK';
         }
@@ -77,7 +79,11 @@ class PhpSecInfo_Test_Application_Php extends PhpSecInfo_Test_Application
                 ? " (the latest version)."
                 : ".  The latest version is " . $this->recommended_value . "."));
         $this->setMessageForResult(PHPSECINFO_TEST_RESULT_NOTICE, 'en', "You are running PHP " . $this->current_value . ".  The latest version of PHP is " . $this->recommended_value . ".");
-        $this->setMessageForResult(PHPSECINFO_TEST_RESULT_WARN, 'en', "You are running PHP " . $this->current_value . " which is really old. We recommend running the latest (stable) version of PHP which includes numerous bug fixes and security fixes.");
+        $this->setMessageForResult(
+            PHPSECINFO_TEST_RESULT_WARN,
+            'en',
+            "You are running PHP " . $this->current_value . " which is really old. We recommend running the latest (stable) version of PHP which includes numerous bug fixes and security fixes."
+        );
         $this->setMessageForResult(PHPSECINFO_TEST_RESULT_ERROR, 'en', "Unable to determine the latest version of PHP available.");
     }
 }

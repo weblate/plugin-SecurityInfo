@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Test Class for upload_tmp_dir
  *
@@ -18,17 +19,16 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test_Core.php');
  */
 class PhpSecInfo_Test_Core_Upload_Tmp_Dir extends PhpSecInfo_Test_Core
 {
-
     /**
      * This should be a <b>unique</b>, human-readable identifier for this test
      *
      * @var string
      */
-    var $test_name = "upload_tmp_dir";
+    public $test_name = "upload_tmp_dir";
 
-    var $recommended_value = "A non-world readable/writable directory";
+    public $recommended_value = "A non-world readable/writable directory";
 
-    function _retrieveCurrentValue()
+    public function _retrieveCurrentValue()
     {
         $this->current_value = ini_get('upload_tmp_dir');
 
@@ -47,12 +47,12 @@ class PhpSecInfo_Test_Core_Upload_Tmp_Dir extends PhpSecInfo_Test_Core
      *
      * @return bool
      */
-    function isTestable()
+    public function isTestable()
     {
         if ($this->osIsWindows()) {
-            return FALSE;
+            return false;
         } else {
-            return TRUE;
+            return true;
         }
     }
 
@@ -64,13 +64,14 @@ class PhpSecInfo_Test_Core_Upload_Tmp_Dir extends PhpSecInfo_Test_Core
      *
      * @see PHPSECINFO_TEST_COMMON_TMPDIR
      */
-    function _execTest()
+    public function _execTest()
     {
 
         $perms = @fileperms($this->current_value);
         if ($perms === false) {
             return PHPSECINFO_TEST_RESULT_WARN;
-        } else if ($this->current_value
+        } elseif (
+            $this->current_value
             && !preg_match("%^" . PHPSECINFO_TEST_COMMON_TMPDIR . "(/|$)%", $this->current_value)
             && !($perms & 0x0004)
             && !($perms & 0x0002)
@@ -87,7 +88,7 @@ class PhpSecInfo_Test_Core_Upload_Tmp_Dir extends PhpSecInfo_Test_Core
     /**
      * Set the messages specific to this test
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 
@@ -100,5 +101,4 @@ class PhpSecInfo_Test_Core_Upload_Tmp_Dir extends PhpSecInfo_Test_Core
 						to access temporary copies of files uploaded via your PHP scripts.  You should set
 						upload_tmp_dir to a non-world-readable directory');
     }
-
 }

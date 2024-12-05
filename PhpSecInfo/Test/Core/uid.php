@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Test class for UID
  *
  * @package PhpSecInfo
  * @author Ed Finkler <coj@funkatron.com>
  */
-
 
 /**
  * require the PhpSecInfo_Test_Core class
@@ -18,7 +18,7 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test_Core.php');
  * but in general 100 seems like a good min.
  *
  */
-define ('PHPSECINFO_MIN_SAFE_UID', 100);
+define('PHPSECINFO_MIN_SAFE_UID', 100);
 
 /**
  * Test class for UID
@@ -27,22 +27,21 @@ define ('PHPSECINFO_MIN_SAFE_UID', 100);
  */
 class PhpSecInfo_Test_Core_Uid extends PhpSecInfo_Test_Core
 {
-
     /**
      * This should be a <b>unique</b>, human-readable identifier for this test
      *
      * @var string
      */
-    var $test_name = "user_id";
+    public $test_name = "user_id";
 
-    var $recommended_value = PHPSECINFO_MIN_SAFE_UID;
+    public $recommended_value = PHPSECINFO_MIN_SAFE_UID;
 
     /**
      * This test only works under Unix OSes
      *
      * @return boolean
      */
-    function isTestable()
+    public function isTestable()
     {
         if ($this->osIsWindows()) {
             return false;
@@ -54,7 +53,7 @@ class PhpSecInfo_Test_Core_Uid extends PhpSecInfo_Test_Core
     }
 
 
-    function _retrieveCurrentValue()
+    public function _retrieveCurrentValue()
     {
         $id = $this->getUnixId();
         if (is_array($id)) {
@@ -62,7 +61,6 @@ class PhpSecInfo_Test_Core_Uid extends PhpSecInfo_Test_Core
         } else {
             $this->current_value = false;
         }
-
     }
 
     /**
@@ -70,7 +68,7 @@ class PhpSecInfo_Test_Core_Uid extends PhpSecInfo_Test_Core
      *
      * @see PHPSECINFO_MIN_SAFE_UID
      */
-    function _execTest()
+    public function _execTest()
     {
         if ($this->current_value >= $this->recommended_value) {
             return PHPSECINFO_TEST_RESULT_OK;
@@ -83,7 +81,7 @@ class PhpSecInfo_Test_Core_Uid extends PhpSecInfo_Test_Core
     /**
      * Set the messages specific to this test
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 
@@ -91,6 +89,4 @@ class PhpSecInfo_Test_Core_Uid extends PhpSecInfo_Test_Core
         $this->setMessageForResult(PHPSECINFO_TEST_RESULT_WARN, 'en', 'PHP may be executing as a "privileged" user, which could be a serious security vulnerability.');
         $this->setMessageForResult(PHPSECINFO_TEST_RESULT_NOTRUN, 'en', 'This test will not run on Windows OSes');
     }
-
-
 }

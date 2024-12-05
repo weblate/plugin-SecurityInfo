@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Test class for expose_php
  *
  * @package PhpSecInfo
  * @author Ed Finkler <coj@funkatron.com>
  */
-
 
 /**
  * require the PhpSecInfo_Test_Core class
@@ -19,17 +19,16 @@ require_once(PHPSECINFO_BASE_DIR . '/Test/Test_Core.php');
  */
 class PhpSecInfo_Test_Core_Expose_Php extends PhpSecInfo_Test_Core
 {
-
     /**
      * This should be a <b>unique</b>, human-readable identifier for this test
      *
      * @var string
      */
-    var $test_name = "expose_php";
+    public $test_name = "expose_php";
 
-    var $recommended_value = FALSE;
+    public $recommended_value = false;
 
-    function _retrieveCurrentValue()
+    public function _retrieveCurrentValue()
     {
         $this->current_value = $this->returnBytes(ini_get('expose_php'));
     }
@@ -37,7 +36,7 @@ class PhpSecInfo_Test_Core_Expose_Php extends PhpSecInfo_Test_Core
     /**
      * Checks to see if expose_php is enabled
      */
-    function _execTest()
+    public function _execTest()
     {
 
         if ($this->current_value == $this->recommended_value) {
@@ -51,7 +50,7 @@ class PhpSecInfo_Test_Core_Expose_Php extends PhpSecInfo_Test_Core
     /**
      * Set the messages specific to this test
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 
@@ -60,6 +59,4 @@ class PhpSecInfo_Test_Core_Expose_Php extends PhpSecInfo_Test_Core
 				the PHP "signature" to the web server header, including the PHP version number.  This
 				could attract attackers looking for vulnerable versions of PHP');
     }
-
-
 }

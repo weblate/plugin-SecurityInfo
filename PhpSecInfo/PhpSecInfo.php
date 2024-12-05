@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Main class file
  *
@@ -6,30 +7,29 @@
  * @author Ed Finkler <coj@funkatron.com>
  */
 
-
 /**
  * The default language setting if none is set/retrievable
  *
  */
-define ('PHPSECINFO_LANG_DEFAULT', 'en');
+define('PHPSECINFO_LANG_DEFAULT', 'en');
 
 /**
  * a general version string to differentiate releases
  *
  */
-define ('PHPSECINFO_VERSION', '0.2.2');
+define('PHPSECINFO_VERSION', '0.2.2');
 
 /**
  * a YYYYMMDD date string to indicate "build" date
  *
  */
-define ('PHPSECINFO_BUILD', '20080723');
+define('PHPSECINFO_BUILD', '20080723');
 
 /**
  * Homepage for phpsecinfo project
  *
  */
-define ('PHPSECINFO_URL', 'http://phpsecinfo.com');
+define('PHPSECINFO_URL', 'http://phpsecinfo.com');
 
 /**
  * The base folder where views are stored.  Include trailing slash
@@ -94,13 +94,12 @@ define('PHPSECINFO_BASE_DIR', dirname(__FILE__));
  */
 class PhpSecInfo
 {
-
     /**
      * An array of tests to run
      *
      * @var array PhpSecInfo_Test
      */
-    var $tests_to_run = array();
+    public $tests_to_run = array();
 
 
     /**
@@ -112,7 +111,7 @@ class PhpSecInfo
      *
      * @var array
      */
-    var $test_results = array();
+    public $test_results = array();
 
 
     /**
@@ -125,7 +124,7 @@ class PhpSecInfo
      *
      * @var array
      */
-    var $tests_not_run = array();
+    public $tests_not_run = array();
 
 
     /**
@@ -135,7 +134,7 @@ class PhpSecInfo
      * @var string
      * @see PHPSECINFO_LANG_DEFAULT
      */
-    var $language = PHPSECINFO_LANG_DEFAULT;
+    public $language = PHPSECINFO_LANG_DEFAULT;
 
 
     /**
@@ -144,7 +143,7 @@ class PhpSecInfo
      *
      * @var array
      */
-    var $result_counts = array();
+    public $result_counts = array();
 
 
     /**
@@ -152,14 +151,14 @@ class PhpSecInfo
      *
      * @var integer
      */
-    var $num_tests_run = 0;
+    public $num_tests_run = 0;
 
 
     /**
      * The base directory for phpsecinfo. Set within the constructor. Paths are resolved from this.
      * @var string
      */
-    var $_base_dir;
+    public $_base_dir;
 
 
     /**
@@ -169,7 +168,7 @@ class PhpSecInfo
      *
      * @var string
      */
-    var $_view_directory;
+    public $_view_directory;
 
 
     /**
@@ -177,7 +176,7 @@ class PhpSecInfo
      *
      * @var string
      **/
-    var $_format;
+    public $_format;
 
     /**
      * Constructor
@@ -185,7 +184,7 @@ class PhpSecInfo
      * @param null|array $opts
      * @return PhpSecInfo
      */
-    function __construct($opts = null)
+    public function __construct($opts = null)
     {
 
         $this->_base_dir = dirname(__FILE__);
@@ -206,7 +205,6 @@ class PhpSecInfo
                     $this->setFormat(PHPSECINFO_FORMAT_DEFAULT);
                 }
             }
-
         } else { /* Use defaults */
             $this->setViewDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . PHPSECINFO_VIEW_DIR_DEFAULT);
             if (!strcasecmp(PHP_SAPI, 'cli')) {
@@ -222,7 +220,7 @@ class PhpSecInfo
      * recurses through the Test subdir and includes classes in each test group subdir,
      * then builds an array of classnames for the tests that will be run
      */
-    function loadTests()
+    public function loadTests()
     {
 
         $test_root = dir(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Test');
@@ -246,7 +244,6 @@ class PhpSecInfo
                     $classNames[] = "PhpSecInfo_Test_" . $test_dir . "_" . basename($entry, '.php');
                 }
             }
-
         }
 
         // modded this to not throw a PHP5 STRICT notice, although I don't like passing by value here
@@ -262,7 +259,7 @@ class PhpSecInfo
      * - $this->num_tests_run
      * - $this->tests_not_run;
      */
-    function runTests()
+    public function runTests()
     {
         // initialize a bunch of arrays
         $this->test_results = array();
@@ -288,7 +285,7 @@ class PhpSecInfo
                 $this->test_results[$test->getTestGroup()][$test->getTestName()] = $rs;
 
                 // initialize if not yet set
-                if (!isset ($this->result_counts[$rs['result']])) {
+                if (!isset($this->result_counts[$rs['result']])) {
                     $this->result_counts[$rs['result']] = 0;
                 }
 
@@ -297,8 +294,8 @@ class PhpSecInfo
             } else {
                 $rs = array('result'            => $test->getResult(),
                             'message'           => $test->getMessage(),
-                            'value_current'     => NULL,
-                            'value_recommended' => NULL,
+                            'value_current'     => null,
+                            'value_recommended' => null,
                             'moreinfo_url'      => $test->getMoreInfoURL(),
                 );
                 $this->result_counts[PHPSECINFO_TEST_RESULT_NOTRUN]++;
@@ -311,7 +308,7 @@ class PhpSecInfo
     /**
      * This is the main output method.  The look and feel mimics phpinfo()
      */
-    function renderOutput($page_title = "Security Information About PHP")
+    public function renderOutput($page_title = "Security Information About PHP")
     {
         /**
          * We need to use PhpSecInfo_Test::getBooleanIniValue() below
@@ -332,7 +329,7 @@ class PhpSecInfo
      * @param array $group_results
      * @return bool
      */
-    function _outputRenderTable($group_name, $group_results)
+    public function _outputRenderTable($group_name, $group_results)
     {
 
         // exit out if $group_results was empty or not an array.  This sorta seems a little hacky...
@@ -354,7 +351,7 @@ class PhpSecInfo
      * @see PHPSecInfo::_outputRenderTable()
      * @see PHPSecInfo::_outputGetResultTypeFromCode()
      */
-    function _outputRenderStatsTable()
+    public function _outputRenderStatsTable()
     {
 
         foreach ($this->result_counts as $code => $val) {
@@ -368,7 +365,6 @@ class PhpSecInfo
         }
 
         $this->_outputRenderTable('Test Results Summary', $stats);
-
     }
 
 
@@ -377,11 +373,10 @@ class PhpSecInfo
      *
      * @see PHPSecInfo::_outputRenderTable()
      */
-    function _outputRenderNotRunTable()
+    public function _outputRenderNotRunTable()
     {
 
         $this->_outputRenderTable('Tests Not Run', $this->tests_not_run);
-
     }
 
 
@@ -393,7 +388,7 @@ class PhpSecInfo
      * @param integer $code
      * @return string
      */
-    function _outputGetCssClassFromResult($code)
+    public function _outputGetCssClassFromResult($code)
     {
 
         switch ($code) {
@@ -421,7 +416,6 @@ class PhpSecInfo
                 return 'value-notrun';
                 break;
         }
-
     }
 
 
@@ -434,7 +428,7 @@ class PhpSecInfo
      * @param integer $code
      * @return string
      */
-    function _outputGetResultTypeFromCode($code)
+    public function _outputGetResultTypeFromCode($code)
     {
 
         switch ($code) {
@@ -462,7 +456,6 @@ class PhpSecInfo
                 return 'Invalid Result Code';
                 break;
         }
-
     }
 
 
@@ -473,7 +466,7 @@ class PhpSecInfo
      *
      * @since 0.1.1
      */
-    function loadAndRun()
+    public function loadAndRun()
     {
         $this->loadTests();
         $this->runTests();
@@ -492,7 +485,7 @@ class PhpSecInfo
      * @since 0.1.1
      * @return array
      */
-    function getResultsAsArray()
+    public function getResultsAsArray()
     {
         $results = array();
 
@@ -521,7 +514,7 @@ class PhpSecInfo
      *
      * @return string
      */
-    function getOutput()
+    public function getOutput()
     {
         ob_start();
         $this->renderOutput();
@@ -533,7 +526,7 @@ class PhpSecInfo
     /**
      * A very, very simple "view" system
      */
-    function loadView($view_name, $data = null)
+    public function loadView($view_name, $data = null)
     {
         if ($data != null) {
             extract($data);
@@ -548,8 +541,6 @@ class PhpSecInfo
         } else {
             user_error("The view '{$view_file}' either does not exist or is not readable", E_USER_WARNING);
         }
-
-
     }
 
 
@@ -558,7 +549,7 @@ class PhpSecInfo
      *
      * @return string
      */
-    function getViewDirectory()
+    public function getViewDirectory()
     {
         return $this->_view_directory;
     }
@@ -569,23 +560,22 @@ class PhpSecInfo
      *
      * @param string $newdir
      */
-    function setViewDirectory($newdir)
+    public function setViewDirectory($newdir)
     {
         $this->_view_directory = $newdir;
     }
 
 
-    function getFormat()
+    public function getFormat()
     {
         return $this->_format;
     }
 
 
-    function setFormat($format)
+    public function setFormat($format)
     {
         $this->_format = $format;
     }
-
 }
 
 
@@ -600,4 +590,3 @@ function phpsecinfo()
     $psi->loadAndRun();
     $psi->renderOutput();
 }
-

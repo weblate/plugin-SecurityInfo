@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Test Class for magic_quotes_gpc
  *
  * @package PhpSecInfo
  * @author Ed Finkler <coj@funkatron.com>
  */
-
 
 /**
  * require the PhpSecInfo_Test_Core class
@@ -24,13 +24,13 @@ class PhpSecInfo_Test_Core_Magic_Quotes_GPC extends PhpSecInfo_Test_Core
      *
      * @var string
      */
-    var $test_name = "magic_quotes_gpc";
+    public $test_name = "magic_quotes_gpc";
 
 
-    var $recommended_value = FALSE;
+    public $recommended_value = false;
 
 
-    function _retrieveCurrentValue()
+    public function _retrieveCurrentValue()
     {
         $this->current_value = $this->getBooleanIniValue('magic_quotes_gpc');
     }
@@ -41,7 +41,7 @@ class PhpSecInfo_Test_Core_Magic_Quotes_GPC extends PhpSecInfo_Test_Core
      *
      * @return boolean
      */
-    function isTestable()
+    public function isTestable()
     {
         return version_compare(PHP_VERSION, '6', '<');
     }
@@ -50,7 +50,7 @@ class PhpSecInfo_Test_Core_Magic_Quotes_GPC extends PhpSecInfo_Test_Core
     /**
      * Checks to see if allow_url_fopen is enabled
      */
-    function _execTest()
+    public function _execTest()
     {
         if ($this->current_value == $this->recommended_value) {
             return PHPSECINFO_TEST_RESULT_OK;
@@ -63,7 +63,7 @@ class PhpSecInfo_Test_Core_Magic_Quotes_GPC extends PhpSecInfo_Test_Core
     /**
      * Set the messages specific to this test
      */
-    function _setMessages()
+    public function _setMessages()
     {
         parent::_setMessages();
 
@@ -76,6 +76,4 @@ class PhpSecInfo_Test_Core_Magic_Quotes_GPC extends PhpSecInfo_Test_Core
 				recommended that magic_quotes_gpc be disabled, and input filtering be handled by your PHP
 				scripts');
     }
-
-
 }
